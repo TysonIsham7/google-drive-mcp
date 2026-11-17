@@ -840,7 +840,7 @@ export async function handleTool(
     case "search": {
       const validation = SearchSchema.safeParse(args);
       if (!validation.success) {
-        return errorResponse(validation.error.errors[0].message);
+        return errorResponse(validation.error.issues[0].message);
       }
       const { query: userQuery, pageSize, pageToken, rawQuery, orderBy } = validation.data;
 
@@ -925,7 +925,7 @@ export async function handleTool(
     case "createTextFile": {
       const validation = CreateTextFileSchema.safeParse(args);
       if (!validation.success) {
-        return errorResponse(validation.error.errors[0].message);
+        return errorResponse(validation.error.issues[0].message);
       }
       const data = validation.data;
 
@@ -969,7 +969,7 @@ export async function handleTool(
     case "updateTextFile": {
       const validation = UpdateTextFileSchema.safeParse(args);
       if (!validation.success) {
-        return errorResponse(validation.error.errors[0].message);
+        return errorResponse(validation.error.issues[0].message);
       }
       const data = validation.data;
 
@@ -1015,7 +1015,7 @@ export async function handleTool(
     case "readTextFile": {
       const validation = ReadTextFileSchema.safeParse(args);
       if (!validation.success) {
-        return errorResponse(validation.error.errors[0].message);
+        return errorResponse(validation.error.issues[0].message);
       }
       const data = validation.data;
 
@@ -1060,7 +1060,7 @@ export async function handleTool(
     case "createFolder": {
       const validation = CreateFolderSchema.safeParse(args);
       if (!validation.success) {
-        return errorResponse(validation.error.errors[0].message);
+        return errorResponse(validation.error.issues[0].message);
       }
       const data = validation.data;
 
@@ -1100,7 +1100,7 @@ export async function handleTool(
     case "listFolder": {
       const validation = ListFolderSchema.safeParse(args);
       if (!validation.success) {
-        return errorResponse(validation.error.errors[0].message);
+        return errorResponse(validation.error.issues[0].message);
       }
       const data = validation.data;
 
@@ -1138,7 +1138,7 @@ export async function handleTool(
     case "listSharedDrives": {
       const validation = ListSharedDrivesSchema.safeParse(args);
       if (!validation.success) {
-        return errorResponse(validation.error.errors[0].message);
+        return errorResponse(validation.error.issues[0].message);
       }
       const data = validation.data;
 
@@ -1171,7 +1171,7 @@ export async function handleTool(
     case "deleteItem": {
       const validation = DeleteItemSchema.safeParse(args);
       if (!validation.success) {
-        return errorResponse(validation.error.errors[0].message);
+        return errorResponse(validation.error.issues[0].message);
       }
       const data = validation.data;
 
@@ -1196,7 +1196,7 @@ export async function handleTool(
     case "renameItem": {
       const validation = RenameItemSchema.safeParse(args);
       if (!validation.success) {
-        return errorResponse(validation.error.errors[0].message);
+        return errorResponse(validation.error.issues[0].message);
       }
       const data = validation.data;
 
@@ -1225,7 +1225,7 @@ export async function handleTool(
     case "moveItem": {
       const validation = MoveItemSchema.safeParse(args);
       if (!validation.success) {
-        return errorResponse(validation.error.errors[0].message);
+        return errorResponse(validation.error.issues[0].message);
       }
       const data = validation.data;
 
@@ -1268,7 +1268,7 @@ export async function handleTool(
     case "copyFile": {
       const validation = CopyFileSchema.safeParse(args);
       if (!validation.success) {
-        return errorResponse(validation.error.errors[0].message);
+        return errorResponse(validation.error.issues[0].message);
       }
       const data = validation.data;
 
@@ -1306,7 +1306,7 @@ export async function handleTool(
     case "createShortcut": {
       const validation = CreateShortcutSchema.safeParse(args);
       if (!validation.success) {
-        return errorResponse(validation.error.errors[0].message);
+        return errorResponse(validation.error.issues[0].message);
       }
       const data = validation.data;
 
@@ -1352,7 +1352,7 @@ export async function handleTool(
     case "lockFile": {
       const validation = LockFileSchema.safeParse(args);
       if (!validation.success) {
-        return errorResponse(validation.error.errors[0].message);
+        return errorResponse(validation.error.issues[0].message);
       }
       const data = validation.data;
 
@@ -1399,7 +1399,7 @@ export async function handleTool(
     case "unlockFile": {
       const validation = UnlockFileSchema.safeParse(args);
       if (!validation.success) {
-        return errorResponse(validation.error.errors[0].message);
+        return errorResponse(validation.error.issues[0].message);
       }
       const data = validation.data;
 
@@ -1442,7 +1442,7 @@ export async function handleTool(
     case "uploadFile": {
       const validation = UploadFileSchema.safeParse(args);
       if (!validation.success) {
-        return errorResponse(validation.error.errors[0].message);
+        return errorResponse(validation.error.issues[0].message);
       }
       const data = validation.data;
 
@@ -1583,7 +1583,7 @@ export async function handleTool(
     case "downloadFile": {
       const validation = DownloadFileSchema.safeParse(args);
       if (!validation.success) {
-        return errorResponse(validation.error.errors[0].message);
+        return errorResponse(validation.error.issues[0].message);
       }
       const data = validation.data;
       const downloadResult = await downloadDriveFile(ctx.getDrive(), data, ctx.log);
@@ -1606,7 +1606,7 @@ export async function handleTool(
 
     case "listPermissions": {
       const validation = ListPermissionsSchema.safeParse(args);
-      if (!validation.success) return errorResponse(validation.error.errors[0].message);
+      if (!validation.success) return errorResponse(validation.error.issues[0].message);
       const data = validation.data;
 
       const response = await ctx.getDrive().permissions.list({
@@ -1635,7 +1635,7 @@ export async function handleTool(
 
     case "addPermission": {
       const validation = AddPermissionSchema.safeParse(args);
-      if (!validation.success) return errorResponse(validation.error.errors[0].message);
+      if (!validation.success) return errorResponse(validation.error.issues[0].message);
       const data = validation.data;
 
       const response = await ctx.getDrive().permissions.create({
@@ -1679,7 +1679,7 @@ export async function handleTool(
 
     case "updatePermission": {
       const validation = UpdatePermissionSchema.safeParse(args);
-      if (!validation.success) return errorResponse(validation.error.errors[0].message);
+      if (!validation.success) return errorResponse(validation.error.issues[0].message);
       const data = validation.data;
 
       const response = await ctx.getDrive().permissions.update({
@@ -1704,7 +1704,7 @@ export async function handleTool(
 
     case "removePermission": {
       const validation = RemovePermissionSchema.safeParse(args);
-      if (!validation.success) return errorResponse(validation.error.errors[0].message);
+      if (!validation.success) return errorResponse(validation.error.issues[0].message);
       const data = validation.data;
 
       let permissionId: string | undefined = data.permissionId;
@@ -1738,7 +1738,7 @@ export async function handleTool(
 
     case "shareFile": {
       const validation = ShareFileSchema.safeParse(args);
-      if (!validation.success) return errorResponse(validation.error.errors[0].message);
+      if (!validation.success) return errorResponse(validation.error.issues[0].message);
       const data = validation.data;
 
       // Idempotent behavior: update existing permission for the same principal instead of creating duplicates.
@@ -1826,7 +1826,7 @@ export async function handleTool(
 
     case "convertPdfToGoogleDoc": {
       const validation = ConvertPdfToGoogleDocSchema.safeParse(args);
-      if (!validation.success) return errorResponse(validation.error.errors[0].message);
+      if (!validation.success) return errorResponse(validation.error.issues[0].message);
       const data = validation.data;
 
       const source = await ctx.getDrive().files.get({
@@ -1856,7 +1856,7 @@ export async function handleTool(
 
     case "bulkConvertFolderPdfs": {
       const validation = BulkConvertFolderPdfsSchema.safeParse(args);
-      if (!validation.success) return errorResponse(validation.error.errors[0].message);
+      if (!validation.success) return errorResponse(validation.error.issues[0].message);
       const data = validation.data;
 
       const list = await ctx.getDrive().files.list({
@@ -1903,7 +1903,7 @@ export async function handleTool(
 
     case "uploadPdfWithSplit": {
       const validation = UploadPdfWithSplitSchema.safeParse(args);
-      if (!validation.success) return errorResponse(validation.error.errors[0].message);
+      if (!validation.success) return errorResponse(validation.error.issues[0].message);
       const data = validation.data;
 
       if (!existsSync(data.localPath)) return errorResponse(`File not found: ${data.localPath}`);
@@ -1964,7 +1964,7 @@ export async function handleTool(
 
     case "getRevisions": {
       const validation = GetRevisionsSchema.safeParse(args);
-      if (!validation.success) return errorResponse(validation.error.errors[0].message);
+      if (!validation.success) return errorResponse(validation.error.issues[0].message);
       const data = validation.data;
 
       const response = await ctx.getDrive().revisions.list({
@@ -1997,7 +1997,7 @@ export async function handleTool(
 
     case "restoreRevision": {
       const validation = RestoreRevisionSchema.safeParse(args);
-      if (!validation.success) return errorResponse(validation.error.errors[0].message);
+      if (!validation.success) return errorResponse(validation.error.issues[0].message);
       const data = validation.data;
 
       if (!data.confirm) {
@@ -2207,7 +2207,7 @@ export async function handleTool(
 
     case "authTestFileAccess": {
       const validation = AuthTestFileAccessSchema.safeParse(args);
-      if (!validation.success) return errorResponse(validation.error.errors[0].message);
+      if (!validation.success) return errorResponse(validation.error.issues[0].message);
       const data = validation.data;
 
       try {
@@ -2243,7 +2243,7 @@ export async function handleTool(
 
     case "manage_accounts": {
       const validation = ManageAccountsSchema.safeParse(args);
-      if (!validation.success) return errorResponse(validation.error.errors[0].message);
+      if (!validation.success) return errorResponse(validation.error.issues[0].message);
       const { action, account_id } = validation.data;
 
       try {

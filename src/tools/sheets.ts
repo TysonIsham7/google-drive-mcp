@@ -766,7 +766,7 @@ export async function handleTool(
     case "createGoogleSheet": {
       const validation = CreateGoogleSheetSchema.safeParse(args);
       if (!validation.success) {
-        return errorResponse(validation.error.errors[0].message);
+        return errorResponse(validation.error.issues[0].message);
       }
       const a = validation.data;
 
@@ -824,7 +824,7 @@ export async function handleTool(
     case "updateGoogleSheet": {
       const validation = UpdateGoogleSheetSchema.safeParse(args);
       if (!validation.success) {
-        return errorResponse(validation.error.errors[0].message);
+        return errorResponse(validation.error.issues[0].message);
       }
       const a = validation.data;
 
@@ -845,7 +845,7 @@ export async function handleTool(
     case "getGoogleSheetContent": {
       const validation = GetGoogleSheetContentSchema.safeParse(args);
       if (!validation.success) {
-        return errorResponse(validation.error.errors[0].message);
+        return errorResponse(validation.error.issues[0].message);
       }
       const a = validation.data;
 
@@ -875,7 +875,7 @@ export async function handleTool(
     case "formatGoogleSheetCells": {
       const validation = FormatGoogleSheetCellsSchema.safeParse(args);
       if (!validation.success) {
-        return errorResponse(validation.error.errors[0].message);
+        return errorResponse(validation.error.issues[0].message);
       }
       const a = validation.data;
 
@@ -939,7 +939,7 @@ export async function handleTool(
     case "formatGoogleSheetText": {
       const validation = FormatGoogleSheetTextSchema.safeParse(args);
       if (!validation.success) {
-        return errorResponse(validation.error.errors[0].message);
+        return errorResponse(validation.error.issues[0].message);
       }
       const a = validation.data;
 
@@ -1020,7 +1020,7 @@ export async function handleTool(
     case "formatGoogleSheetNumbers": {
       const validation = FormatGoogleSheetNumbersSchema.safeParse(args);
       if (!validation.success) {
-        return errorResponse(validation.error.errors[0].message);
+        return errorResponse(validation.error.issues[0].message);
       }
       const a = validation.data;
 
@@ -1071,7 +1071,7 @@ export async function handleTool(
     case "setGoogleSheetBorders": {
       const validation = SetGoogleSheetBordersSchema.safeParse(args);
       if (!validation.success) {
-        return errorResponse(validation.error.errors[0].message);
+        return errorResponse(validation.error.issues[0].message);
       }
       const a = validation.data;
 
@@ -1128,7 +1128,7 @@ export async function handleTool(
     case "mergeGoogleSheetCells": {
       const validation = MergeGoogleSheetCellsSchema.safeParse(args);
       if (!validation.success) {
-        return errorResponse(validation.error.errors[0].message);
+        return errorResponse(validation.error.issues[0].message);
       }
       const a = validation.data;
 
@@ -1169,7 +1169,7 @@ export async function handleTool(
     case "addGoogleSheetConditionalFormat": {
       const validation = AddGoogleSheetConditionalFormatSchema.safeParse(args);
       if (!validation.success) {
-        return errorResponse(validation.error.errors[0].message);
+        return errorResponse(validation.error.issues[0].message);
       }
       const a = validation.data;
 
@@ -1267,7 +1267,7 @@ export async function handleTool(
     case "getSpreadsheetInfo": {
       const validation = GetSpreadsheetInfoSchema.safeParse(args);
       if (!validation.success) {
-        return errorResponse(validation.error.errors[0].message);
+        return errorResponse(validation.error.issues[0].message);
       }
       const a = validation.data;
 
@@ -1305,7 +1305,7 @@ export async function handleTool(
     case "appendSpreadsheetRows": {
       const validation = AppendSpreadsheetRowsSchema.safeParse(args);
       if (!validation.success) {
-        return errorResponse(validation.error.errors[0].message);
+        return errorResponse(validation.error.issues[0].message);
       }
       const a = validation.data;
 
@@ -1333,7 +1333,7 @@ export async function handleTool(
       const isAlias = toolName === 'addSheet';
       const validation = isAlias ? AddSheetSchema.safeParse(args) : AddSpreadsheetSheetSchema.safeParse(args);
       if (!validation.success) {
-        return errorResponse(validation.error.errors[0].message);
+        return errorResponse(validation.error.issues[0].message);
       }
 
       const spreadsheetId = validation.data.spreadsheetId;
@@ -1366,7 +1366,7 @@ export async function handleTool(
 
     case "listSheets": {
       const validation = ListSheetsSchema.safeParse(args);
-      if (!validation.success) return errorResponse(validation.error.errors[0].message);
+      if (!validation.success) return errorResponse(validation.error.issues[0].message);
       const a = validation.data;
 
       const sheets = ctx.google.sheets({ version: 'v4', auth: ctx.authClient });
@@ -1386,7 +1386,7 @@ export async function handleTool(
 
     case "renameSheet": {
       const validation = RenameSheetSchema.safeParse(args);
-      if (!validation.success) return errorResponse(validation.error.errors[0].message);
+      if (!validation.success) return errorResponse(validation.error.issues[0].message);
       const a = validation.data;
 
       const sheets = ctx.google.sheets({ version: 'v4', auth: ctx.authClient });
@@ -1407,7 +1407,7 @@ export async function handleTool(
 
     case "deleteSheet": {
       const validation = DeleteSheetSchema.safeParse(args);
-      if (!validation.success) return errorResponse(validation.error.errors[0].message);
+      if (!validation.success) return errorResponse(validation.error.issues[0].message);
       const a = validation.data;
 
       const sheets = ctx.google.sheets({ version: 'v4', auth: ctx.authClient });
@@ -1425,7 +1425,7 @@ export async function handleTool(
 
     case "addDataValidation": {
       const validation = AddDataValidationSchema.safeParse(args);
-      if (!validation.success) return errorResponse(validation.error.errors[0].message);
+      if (!validation.success) return errorResponse(validation.error.issues[0].message);
       const a = validation.data;
 
       const sheets = ctx.google.sheets({ version: 'v4', auth: ctx.authClient });
@@ -1462,7 +1462,7 @@ export async function handleTool(
 
     case "protectRange": {
       const validation = ProtectRangeSchema.safeParse(args);
-      if (!validation.success) return errorResponse(validation.error.errors[0].message);
+      if (!validation.success) return errorResponse(validation.error.issues[0].message);
       const a = validation.data;
 
       const sheets = ctx.google.sheets({ version: 'v4', auth: ctx.authClient });
@@ -1490,7 +1490,7 @@ export async function handleTool(
 
     case "addNamedRange": {
       const validation = AddNamedRangeSchema.safeParse(args);
-      if (!validation.success) return errorResponse(validation.error.errors[0].message);
+      if (!validation.success) return errorResponse(validation.error.issues[0].message);
       const a = validation.data;
 
       const sheets = ctx.google.sheets({ version: 'v4', auth: ctx.authClient });
@@ -1518,7 +1518,7 @@ export async function handleTool(
     case "listGoogleSheets": {
       const validation = ListGoogleSheetsSchema.safeParse(args);
       if (!validation.success) {
-        return errorResponse(validation.error.errors[0].message);
+        return errorResponse(validation.error.issues[0].message);
       }
       const a = validation.data;
 
@@ -1564,7 +1564,7 @@ export async function handleTool(
 
     case "setColumnWidth": {
       const validation = SetColumnWidthSchema.safeParse(args);
-      if (!validation.success) return errorResponse(validation.error.errors[0].message);
+      if (!validation.success) return errorResponse(validation.error.issues[0].message);
       const a = validation.data;
 
       await batchUpdateOne(ctx, a.spreadsheetId, {
@@ -1580,7 +1580,7 @@ export async function handleTool(
 
     case "setRowHeight": {
       const validation = SetRowHeightSchema.safeParse(args);
-      if (!validation.success) return errorResponse(validation.error.errors[0].message);
+      if (!validation.success) return errorResponse(validation.error.issues[0].message);
       const a = validation.data;
 
       await batchUpdateOne(ctx, a.spreadsheetId, {
@@ -1596,7 +1596,7 @@ export async function handleTool(
 
     case "autoResizeColumns": {
       const validation = AutoResizeColumnsSchema.safeParse(args);
-      if (!validation.success) return errorResponse(validation.error.errors[0].message);
+      if (!validation.success) return errorResponse(validation.error.issues[0].message);
       const a = validation.data;
 
       await batchUpdateOne(ctx, a.spreadsheetId, {
@@ -1610,7 +1610,7 @@ export async function handleTool(
 
     case "autoResizeRows": {
       const validation = AutoResizeRowsSchema.safeParse(args);
-      if (!validation.success) return errorResponse(validation.error.errors[0].message);
+      if (!validation.success) return errorResponse(validation.error.issues[0].message);
       const a = validation.data;
 
       await batchUpdateOne(ctx, a.spreadsheetId, {
@@ -1625,7 +1625,7 @@ export async function handleTool(
     case "hideSheetDimension":
     case "showSheetDimension": {
       const validation = HideShowDimensionSchema.safeParse(args);
-      if (!validation.success) return errorResponse(validation.error.errors[0].message);
+      if (!validation.success) return errorResponse(validation.error.issues[0].message);
       const a = validation.data;
       const hide = toolName === 'hideSheetDimension';
 
