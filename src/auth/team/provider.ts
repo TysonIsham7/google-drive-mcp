@@ -1,7 +1,7 @@
 // ---------------------------------------------------------------------------
 // TeamOAuthProvider — the OAuthServerProvider behind the SDK's mcpAuthRouter.
 //
-// Division of labor with the SDK (v1.26): the SDK validates redirect_uri
+// Division of labor with the SDK (v1.32): the SDK validates redirect_uri
 // against the registered client at /authorize, authenticates the client at
 // /token, and verifies PKCE S256 itself via challengeForAuthorizationCode
 // (skipLocalPkceValidation stays unset). Everything the SDK deliberately does
